@@ -30,11 +30,15 @@ const commonConfig = merge([
     },
     plugins: [new webpack.HotModuleReplacementPlugin()],
   },
-  parts.loadCSS(),
   parts.loadLess(),
 ]);
 
-const productionConfig = merge([parts.clean(PATHS.build)]);
+const productionConfig = merge([
+  parts.extractCSS({
+    use: 'css-loader',
+  }),
+  parts.clean(PATHS.build),
+]);
 
 const developmentConfig = merge([
   parts.devServer({
@@ -42,6 +46,7 @@ const developmentConfig = merge([
     host: process.env.HOST,
     port: process.env.PORT,
   }),
+  parts.loadCSS(),
 ]);
 
 module.exports = mode => {

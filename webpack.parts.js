@@ -1,4 +1,5 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 exports.clean = path => ({
   plugins: [
@@ -59,6 +60,27 @@ exports.loadLess = ({ include, exclude } = {}) => ({
   },
 });
 
+exports.extractCSS = ({ include, exclude, use = [] }) => {
+  // Output extracted CSS to a file
+  const plugin = new MiniCssExtractPlugin({
+    filename: 'styles/[name].css',
+  });
+
+  return {
+    module: {
+      rules: [
+        {
+          test: /\.css$/,
+          include,
+          exclude,
+
+          use: [MiniCssExtractPlugin.loader].concat(use),
+        },
+      ],
+    },
+    plugins: [plugin],
+  };
+};
 // DONT USE INLINE CSS
 // Even though there is a nice build set up now, where did all the CSS go? As per configuration, it has been inlined to JavaScript! Even though this can be convenient during development, it doesn't sound ideal.
 //
