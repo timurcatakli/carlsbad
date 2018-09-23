@@ -22,6 +22,14 @@ const commonConfig = merge([
     },
     resolve: {
       extensions: ['*', '.js', '.jsx'],
+      // we are using alias so that antd icons do not bloat the bundle
+      // https://github.com/ant-design/ant-design/issues/12011
+      alias: {
+        '@ant-design/icons/lib/dist$': path.resolve(
+          __dirname,
+          './src/icons.js',
+        ),
+      },
     },
     output: {
       path: __dirname + '/dist',
@@ -34,6 +42,7 @@ const commonConfig = merge([
 ]);
 
 const productionConfig = merge([
+  parts.bundleAnalyzer(),
   parts.extractCSS({
     use: 'css-loader',
   }),

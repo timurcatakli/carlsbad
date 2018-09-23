@@ -1,5 +1,11 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin;
+
+exports.bundleAnalyzer = () => ({
+  plugins: [new BundleAnalyzerPlugin()],
+});
 
 exports.clean = path => ({
   plugins: [
@@ -65,7 +71,6 @@ exports.extractCSS = ({ include, exclude, use = [] }) => {
   const plugin = new MiniCssExtractPlugin({
     filename: 'styles/[name].css',
   });
-
   return {
     module: {
       rules: [
