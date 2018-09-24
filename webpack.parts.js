@@ -3,6 +3,55 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
 
+exports.generateSourceMaps = ({ type }) => ({
+  devtool: type,
+});
+
+exports.setMode = mode => ({
+  mode,
+});
+
+exports.loadImages = ({ include, exclude, options } = {}) => ({
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpg)$/,
+        include,
+        exclude,
+        use: {
+          loader: 'url-loader',
+          options,
+        },
+      },
+    ],
+  },
+});
+
+exports.loadSvgs = ({ include, exclude } = {}) => ({
+  module: {
+    rules: [
+      {
+        test: /\.svg$/,
+        include,
+        exclude,
+        use: {
+          loader: 'file-loader',
+        },
+      },
+    ],
+  },
+});
+
+// Autoprefixing solves this problem.
+// It can be enabled through PostCSS and the autoprefixer plugin.
+// autoprefixer uses Can I Use service to figure out which rules should be prefixed and its behavior can be tuned further.
+exports.autoprefix = () => ({
+  loader: 'postcss-loader',
+  options: {
+    plugins: () => [require('autoprefixer')()],
+  },
+});
+
 exports.bundleAnalyzer = () => ({
   plugins: [new BundleAnalyzerPlugin()],
 });

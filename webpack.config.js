@@ -14,8 +14,14 @@ const commonConfig = merge([
     module: {
       rules: [
         {
+          // **Conditions** to match files using RegExp, function.
           test: /\.(js|jsx)$/,
+          // **Restrictions**
+          // Restrict matching to a directory. This
+          // also accepts an array of paths or a function.
+          // The same applies to `exclude`.
           exclude: /node_modules/,
+          // **Actions** to apply loaders to the matched files.
           use: ['babel-loader'],
         },
       ],
@@ -38,23 +44,36 @@ const commonConfig = merge([
     },
     plugins: [new webpack.HotModuleReplacementPlugin()],
   },
+  parts.loadSvgs(),
   parts.loadLess(),
 ]);
 
 const productionConfig = merge([
-  parts.bundleAnalyzer(),
+  // parts.bundleAnalyzer(),
+  parts.setMode('production'),
+  parts.generateSourceMaps({ type: 'source-map' }),
+  parts.loadImages({
+    options: {
+      limit: 15000,
+      name: '[name].[ext]',
+    },
+  }),
   parts.extractCSS({
-    use: 'css-loader',
+    use: ['css-loader', parts.autoprefix()],
   }),
   parts.clean(PATHS.build),
 ]);
 
 const developmentConfig = merge([
+  // If you are using webpack 4 and the new mode option,
+  //the tool will generate source maps automatically for you in development mode
+  parts.setMode('development'),
   parts.devServer({
     // Customize host/port here if needed
     host: process.env.HOST,
     port: process.env.PORT,
   }),
+  parts.loadImages(),
   parts.loadCSS(),
 ]);
 
