@@ -1,24 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import { Button } from 'antd';
 
-const App = ({ test1, test2, test3 }) => (
+const App = () => (
   <p>
-    App functional {test1} - {test2} - {test3} component is working
+    App functional component is working
     <Button type="primary">Test</Button>
   </p>
 );
 
-App.propTypes = {
-  test1: PropTypes.string,
-  test2: PropTypes.string,
-  test3: PropTypes.string,
-};
+App.propTypes = {};
 
-App.defaultProps = {
-  images: [],
-  error: '',
-};
+App.defaultProps = {};
 
 export default App;
