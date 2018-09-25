@@ -52,16 +52,17 @@ const productionConfig = merge([
   // parts.bundleAnalyzer(),
   parts.setMode('production'),
   parts.minifyJavaScript(),
-  parts.minifyCSS({
-    options: {
-      discardComments: {
-        removeAll: true,
-      },
-      // Run cssnano in safe mode to avoid
-      // potentially unsafe transformations.
-      safe: true,
-    },
-  }),
+  parts.minifyCSS(),
+  // parts.minifyCSS({
+  //   options: {
+  //     discardComments: {
+  //       removeAll: true,
+  //     },
+  //     // Run cssnano in safe mode to avoid
+  //     // potentially unsafe transformations.
+  //     safe: true,
+  //   },
+  // }),
   parts.generateSourceMaps({ type: 'source-map' }),
   parts.loadImages({
     options: {
