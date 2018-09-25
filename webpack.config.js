@@ -51,6 +51,17 @@ const commonConfig = merge([
 const productionConfig = merge([
   // parts.bundleAnalyzer(),
   parts.setMode('production'),
+  parts.minifyJavaScript(),
+  parts.minifyCSS({
+    options: {
+      discardComments: {
+        removeAll: true,
+      },
+      // Run cssnano in safe mode to avoid
+      // potentially unsafe transformations.
+      safe: true,
+    },
+  }),
   parts.generateSourceMaps({ type: 'source-map' }),
   parts.loadImages({
     options: {
@@ -62,6 +73,21 @@ const productionConfig = merge([
     use: ['css-loader', parts.autoprefix()],
   }),
   parts.clean(PATHS.build),
+  //Bundle Splitting
+  {
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          commons: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendor',
+            chunks: 'initial',
+          },
+        },
+      },
+    },
+  },
+  parts.attachRevision(),
 ]);
 
 const developmentConfig = merge([

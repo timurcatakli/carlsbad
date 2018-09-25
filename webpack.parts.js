@@ -1,7 +1,36 @@
+const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
+const GitRevisionPlugin = require('git-revision-webpack-plugin');
+const UglifyWebpackPlugin = require('uglifyjs-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const cssnano = require('cssnano');
+
+exports.minifyCSS = ({ options }) => ({
+  plugins: [
+    new OptimizeCSSAssetsPlugin({
+      cssProcessor: cssnano,
+      cssProcessorOptions: options,
+      canPrint: false,
+    }),
+  ],
+});
+
+exports.minifyJavaScript = () => ({
+  optimization: {
+    minimizer: [new UglifyWebpackPlugin({ sourceMap: true })],
+  },
+});
+
+exports.attachRevision = () => ({
+  plugins: [
+    new webpack.BannerPlugin({
+      banner: new GitRevisionPlugin().version(),
+    }),
+  ],
+});
 
 exports.generateSourceMaps = ({ type }) => ({
   devtool: type,
