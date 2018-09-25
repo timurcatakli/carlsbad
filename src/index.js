@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Button } from 'antd';
@@ -7,7 +8,7 @@ const title = 'My Minimal React Webpack Babel Setup';
 
 ReactDOM.render(
   <div>
-    {title} - <Button type="primary">Primary</Button>
+    {title} - <Button type="primary">Primary Button Ver</Button>
   </div>,
   document.getElementById('app'),
 );

@@ -24,6 +24,11 @@ const commonConfig = merge([
           // **Actions** to apply loaders to the matched files.
           use: ['babel-loader'],
         },
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: ['babel-loader', 'eslint-loader'],
+        },
       ],
     },
     resolve: {
