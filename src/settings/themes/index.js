@@ -1,8 +1,8 @@
-import themedefault from './themedefault';
-import theme2 from './theme2';
+import themedark from './themedark';
+import themelight from './themelight';
 
 const themes = {
-  themedefault,
-  theme2,
+  themedark,
+  themelight,
 };
 export default themes;

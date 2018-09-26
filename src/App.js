@@ -1,12 +1,19 @@
 import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { hot } from 'react-hot-loader';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Layout, Menu, Switch } from 'antd';
 import { ThemeProvider } from 'styled-components';
+import CoreComponents from '@src/components/core';
+import Tag from '@src/components/core/tag';
 import { switchTheme } from './actions';
 import AppStyleWrapper from './app.style';
 import { themeConfig } from './settings';
+import HeaderLogo from './components/core/layout/headerLogo';
+import HeaderMainNav from './components/core/layout/headerMainNav';
 import themes from './settings/themes';
+import { ROUTES } from './constants';
 
 const { Header, Content, Footer } = Layout;
 
@@ -16,52 +23,46 @@ class App extends React.Component {
   };
 
   onCollapse = collapsed => {
-    console.log(collapsed);
     this.setState({ collapsed });
   };
 
   onChange = () => {
-    this.props.switchTheme();
+    const { currTheme } = this.props;
+    let newTheme = '';
+    if (currTheme === 'themelight') {
+      newTheme = 'themedark';
+    } else {
+      newTheme = 'themelight';
+    }
+    this.props.switchTheme(newTheme);
   };
 
   render() {
-    console.log(this.props.sidebarCollapsed);
-    const currTheme = this.props.sidebarCollapsed ? 'themedefault' : 'theme2';
+    const { currTheme } = this.props;
     return (
-      <ThemeProvider theme={themes[currTheme]}>
-        <AppStyleWrapper>
-          <Layout style={{ minHeight: '100vh' }} className="appLayout">
-            <Header
-              style={{
-                padding: '1',
-                position: 'fixed',
-                zIndex: 1,
-                width: '100%',
-                backgroundColor: 'transparent',
-              }}
-            >
-              <Switch defaultChecked onChange={this.onChange} />
-              <div className="logo" style={{ backgroundColor: 'gold', height: 40 }} />
-              <div className="logo" style={{ backgroundColor: 'darkgreen', height: 40 }} />
-              <Menu
-                theme="dark"
-                mode="horizontal"
-                defaultSelectedKeys={['2']}
-                style={{ lineHeight: '64px' }}
-              >
-                <Menu.Item key="1">nav 1</Menu.Item>
-                <Menu.Item key="2">nav 2</Menu.Item>
-                <Menu.Item key="3">nav 3</Menu.Item>
-              </Menu>
-            </Header>
-          </Layout>
-        </AppStyleWrapper>
-      </ThemeProvider>
+      <Router>
+        <ThemeProvider theme={themes[currTheme]}>
+          <AppStyleWrapper>
+            <Layout className="appLayout">
+              <Header>
+                <HeaderLogo />
+                <HeaderMainNav />
+                <Content className="appContent">
+                  <Route exact path={ROUTES.COMPONENTS} component={CoreComponents} />
+                  <Route exact path={ROUTES.TAG} component={Tag} />
+                </Content>
+                {/* <Switch defaultChecked onChange={this.onChange} /> */}
+              </Header>
+            </Layout>
+          </AppStyleWrapper>
+        </ThemeProvider>
+      </Router>
     );
   }
 }
 
 App.propTypes = {
+  currTheme: PropTypes.string.isRequired,
   sidebarCollapsed: PropTypes.bool.isRequired,
   switchTheme: PropTypes.func.isRequired,
 };
@@ -71,7 +72,9 @@ App.defaultProps = {};
 export default connect(
   state => ({
     sidebarCollapsed: state.app.sidebarCollapsed,
-    customizedTheme: state.app.layoutTheme.themeName,
+    currTheme: state.app.theme,
   }),
   { switchTheme },
-)(App);
+)(hot(module)(App));
+
+// export default hot(module)(App)

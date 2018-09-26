@@ -1,15 +1,14 @@
 {
-  parser: "babel-eslint",
-  "plugins": [
-    "react"
-  ],
+  "parser": "babel-eslint",
+  "plugins": ["react"],
   "rules": {
     "no-unused-vars": ["warn", { "varsIgnorePattern": "React" }],
-    "react/jsx-uses-vars": 'error',
-    "react/sort-prop-types": 'error',
-    "react/prop-types": 'error',
+    "react/jsx-uses-vars": "error",
+    "react/sort-prop-types": "error",
+    "react/prop-types": "error",
     "arrow-parens": off,
     "object-curly-newline": off,
+    "import/no-unresolved": [2, { "ignore": ["^@+"] }]
   },
   "extends": ["airbnb-base"]
 }

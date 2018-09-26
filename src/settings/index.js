@@ -8,10 +8,7 @@ const siteConfig = {
 };
 
 const themeConfig = {
-  topbar: 'theme2',
-  sidebar: 'theme2',
-  layout: 'theme2',
-  theme: 'theme2',
+  theme: 'themedark',
 };
 const language = 'english';
 

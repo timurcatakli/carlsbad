@@ -117,7 +117,12 @@ exports.clean = path => ({
 exports.devServer = ({ host, port } = {}) => ({
   devServer: {
     // Display only errors to reduce the amount of output.
-    stats: 'normal',
+    stats: 'errors-only',
+    // This section is for everyone who ran into this problem in development using
+    // webpack-dev-server.. Just as above, what we need to do it tell Webpack Dev Sever
+    // to redirect all server requests to /index.html. There are just two properties
+    // in your webpack config you need to set to do this, publicPath and historyApiFallback.
+    historyApiFallback: true,
     contentBase: './dist',
     hot: true,
     // Parse host and port from env to allow customization.

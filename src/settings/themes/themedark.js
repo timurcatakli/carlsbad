@@ -17,6 +17,10 @@ theme.palette = {
     '#236cfe', // 12: darken 10%
     '#4d88ff', // 13: Lighten 5%
   ],
+  background: [
+    '#191f25', // 0: Default
+    '#444d58', // 1: Name TBD
+  ],
   secondary: [
     '#2d3446', // 0: DarkBlue
     '#f1f3f6', // 1: LightBluish

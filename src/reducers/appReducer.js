@@ -1,11 +1,12 @@
-import config, { getCurrentTheme } from './config';
-// import actions from './actions';
-
+import update from 'immutability-helper';
+import { themeConfig } from '../settings';
 import { APP } from '../constants';
+
+const appSwitchTheme = (state, { payload }) => update(state, { theme: { $set: payload.theme } });
 
 const initialState = {
   sidebarCollapsed: false,
-  layoutTheme: getCurrentTheme('layoutTheme', config.layoutTheme.defaultTheme || 'themedefault'),
+  theme: themeConfig.theme,
 };
 
 export default (state = initialState, action) => {
@@ -16,10 +17,7 @@ export default (state = initialState, action) => {
         sidebarCollapsed: !state.sidebarCollapsed,
       };
     case APP.SWITCH_THEME:
-      return {
-        ...state,
-        sidebarCollapsed: !state.sidebarCollapsed,
-      };
+      return appSwitchTheme(state, action);
     default:
       return state;
   }

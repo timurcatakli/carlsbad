@@ -5,8 +5,11 @@ const toggleSidebar = () => ({
   type: APP.TOGGLE_SIDEBAR,
 });
 
-const switchTheme = () => ({
+const switchTheme = theme => ({
   type: APP.SWITCH_THEME,
+  payload: {
+    theme,
+  },
 });
 
 export { toggleSidebar, switchTheme };

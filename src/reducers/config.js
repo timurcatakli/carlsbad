@@ -6,12 +6,12 @@ const changeThemes = {
   defaultTheme: themeConfig.theme,
   options: [
     {
-      themeName: 'themedefault',
+      themeName: 'themedark',
       buttonColor: '#ffffff',
       textColor: '#323332',
     },
     {
-      themeName: 'theme2',
+      themeName: 'themelight',
       buttonColor: '#ffffff',
       textColor: '#323332',
     },
@@ -23,7 +23,7 @@ const topbarTheme = {
   defaultTheme: themeConfig.topbar,
   options: [
     {
-      themeName: 'themedefault',
+      themeName: 'themedark',
       buttonColor: '#ffffff',
       textColor: '#323332',
     },
@@ -34,7 +34,7 @@ const topbarTheme = {
       textColor: '#ffffff',
     },
     {
-      themeName: 'theme2',
+      themeName: 'themelight',
       buttonColor: '#6534ff',
       backgroundColor: '#6534ff',
       textColor: '#ffffff',
@@ -77,7 +77,7 @@ const sidebarTheme = {
   defaultTheme: themeConfig.sidebar,
   options: [
     {
-      themeName: 'themedefault',
+      themeName: 'themedark',
       buttonColor: '#323332',
       backgroundColor: undefined,
       textColor: '#788195',
@@ -89,7 +89,7 @@ const sidebarTheme = {
       textColor: '#ffffff',
     },
     {
-      themeName: 'theme2',
+      themeName: 'themelight',
       buttonColor: '#6534ff',
       backgroundColor: '#6534ff',
       textColor: '#ffffff',
@@ -132,7 +132,7 @@ const layoutTheme = {
   defaultTheme: themeConfig.layout,
   options: [
     {
-      themeName: 'themedefault',
+      themeName: 'themedark',
       buttonColor: '#ffffff',
       backgroundColor: '#F1F3F6',
       textColor: undefined,
@@ -144,7 +144,7 @@ const layoutTheme = {
       textColor: '#323232',
     },
     {
-      themeName: 'theme2',
+      themeName: 'themelight',
       buttonColor: '#F9F9F9',
       backgroundColor: '#F9F9F9',
       textColor: '#ffffff',
