@@ -4,10 +4,12 @@
     "react"
   ],
   "rules": {
-    "no-unused-vars": ["error", { "varsIgnorePattern": "React" }],
+    "no-unused-vars": ["warn", { "varsIgnorePattern": "React" }],
     "react/jsx-uses-vars": 'error',
     "react/sort-prop-types": 'error',
     "react/prop-types": 'error',
+    "arrow-parens": off,
+    "object-curly-newline": off,
   },
   "extends": ["airbnb-base"]
 }

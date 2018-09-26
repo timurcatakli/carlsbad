@@ -36,14 +36,11 @@ const commonConfig = merge([
       // we are using alias so that antd icons do not bloat the bundle
       // https://github.com/ant-design/ant-design/issues/12011
       alias: {
-        '@ant-design/icons/lib/dist$': path.resolve(
-          __dirname,
-          './src/icons.js',
-        ),
+        '@ant-design/icons/lib/dist$': path.resolve(__dirname, './src/icons.js'),
       },
     },
     output: {
-      path: __dirname + '/dist',
+      path: `${__dirname}/dist`,
       publicPath: '/',
       filename: 'bundle.js',
     },
@@ -79,7 +76,7 @@ const productionConfig = merge([
     use: ['css-loader', parts.autoprefix()],
   }),
   parts.clean(PATHS.build),
-  //Bundle Splitting
+  // Bundle Splitting
   {
     optimization: {
       splitChunks: {
@@ -98,7 +95,8 @@ const productionConfig = merge([
 
 const developmentConfig = merge([
   // If you are using webpack 4 and the new mode option,
-  //the tool will generate source maps automatically for you in development mode
+  // the tool will generate source maps automatically for you in development mode
+  parts.generateSourceMaps({ type: 'source-map' }),
   parts.setMode('development'),
   parts.devServer({
     // Customize host/port here if needed

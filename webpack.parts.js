@@ -1,8 +1,7 @@
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-  .BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const GitRevisionPlugin = require('git-revision-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -118,7 +117,7 @@ exports.clean = path => ({
 exports.devServer = ({ host, port } = {}) => ({
   devServer: {
     // Display only errors to reduce the amount of output.
-    stats: 'errors-only',
+    stats: 'normal',
     contentBase: './dist',
     hot: true,
     // Parse host and port from env to allow customization.
@@ -130,7 +129,7 @@ exports.devServer = ({ host, port } = {}) => ({
     // unlike default `localhost`.
     host, // Defaults to `localhost`
     port, // Defaults to 8080
-    open: true, // Open the page in browser,
+    open: false, // Open the page in browser,
     // WDS provides an overlay for capturing compilation related warnings and errors:
     overlay: true,
   },
