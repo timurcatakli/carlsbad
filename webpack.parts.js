@@ -6,6 +6,13 @@ const GitRevisionPlugin = require('git-revision-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const cssnano = require('cssnano');
+const path = require('path');
+const fs = require('fs');
+const lessToJs = require('less-vars-to-js');
+
+const themeVariables = lessToJs(
+  fs.readFileSync(path.join(__dirname, './src/settings/themes/ant-default-vars.less'), 'utf8'),
+);
 
 exports.minifyCSS = () => ({
   optimization: {
@@ -162,8 +169,17 @@ exports.loadLess = ({ include, exclude } = {}) => ({
         test: /\.less$/,
         include,
         exclude,
-
-        use: ['style-loader', 'css-loader', 'less-loader'],
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+          {
+            loader: 'less-loader',
+            options: {
+              modifyVars: themeVariables,
+              javascriptEnabled: true,
+            },
+          },
+        ],
       },
     ],
   },

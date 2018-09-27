@@ -78,7 +78,7 @@ theme.palette = {
   text: [
     '#323332', // 0: Heading
     '#595959', // 1: HeadingLight
-    '#979797', // 2: Text
+    '#ffffff', // 2: Text
     '#797979', // 3: TextDark
     '#6a6c6a', // 4: Heading Lighten 22%
   ],

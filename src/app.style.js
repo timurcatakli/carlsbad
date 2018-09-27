@@ -8,16 +8,10 @@ const AppStyleWrapper = styled.div`
   h4,
   h5,
   h6,
-  a,
   p,
-  li,
-  input,
-  textarea,
-  span,
-  div,
-  img,
-  svg {
-    color: #fff;
+  li {
+    color: ${key(['palette', 'text', 2])};
+    font-weight: : 100;
   }
 
   .ant-row:not(.ant-form-item) {

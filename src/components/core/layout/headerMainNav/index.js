@@ -6,8 +6,9 @@ import StyleWrapper from './style';
 
 const { Option } = Select;
 
-const categoryData = ['Navigation', 'DataEntry', 'DataDisplay', 'Feedback', 'Other'];
+const categoryData = ['General', 'Navigation', 'DataEntry', 'DataDisplay', 'Feedback', 'Other'];
 const componentData = {
+  General: ['Button', 'Icon'],
   Navigation: ['Affix', 'Breadcrumb', 'Dropdown', 'Menu', 'Pagination', 'Steps'],
   DataEntry: [
     'AutoComplete',
@@ -74,15 +75,18 @@ class HeaderMainNav extends React.Component {
   };
 
   handleRoutePush = () => {
-    const selectedCategory = this.state.selectedCategory.toLowerCase()
-    const selectedComponent = this.state.selectedComponent.toLowerCase()
+    const selectedCategory = this.state.selectedCategory.toLowerCase();
+    const selectedComponent = this.state.selectedComponent.toLowerCase();
     this.props.history.push(`/${selectedCategory}/${selectedComponent}`);
-  }
+  };
 
   onComponentChange = value => {
-    this.setState({
-      selectedComponent: value,
-    }, this.handleRoutePush);
+    this.setState(
+      {
+        selectedComponent: value,
+      },
+      this.handleRoutePush,
+    );
   };
 
   render() {
