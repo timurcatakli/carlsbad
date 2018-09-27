@@ -6,5 +6,5 @@ export const APP = {
 
 export const ROUTES = {
   COMPONENTS: '/',
-  TAG: '/tag',
+  TAG: '/datadisplay/tag',
 };

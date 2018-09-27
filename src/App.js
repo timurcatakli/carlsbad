@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { Layout, Menu, Switch } from 'antd';
 import { ThemeProvider } from 'styled-components';
 import CoreComponents from '@src/components/core';
-import Tag from '@src/components/core/tag';
+import TagPage from '@src/components/componentLibrary/tagPage';
 import { switchTheme } from './actions';
 import AppStyleWrapper from './app.style';
 import { themeConfig } from './settings';
@@ -49,7 +49,7 @@ class App extends React.Component {
                 <HeaderMainNav />
                 <Content className="appContent">
                   <Route exact path={ROUTES.COMPONENTS} component={CoreComponents} />
-                  <Route exact path={ROUTES.TAG} component={Tag} />
+                  <Route exact path={ROUTES.TAG} component={TagPage} />
                 </Content>
                 {/* <Switch defaultChecked onChange={this.onChange} /> */}
               </Header>

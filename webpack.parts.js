@@ -118,6 +118,7 @@ exports.devServer = ({ host, port } = {}) => ({
   devServer: {
     // Display only errors to reduce the amount of output.
     stats: 'errors-only',
+    clientLogLevel: 'error',
     // This section is for everyone who ran into this problem in development using
     // webpack-dev-server.. Just as above, what we need to do it tell Webpack Dev Sever
     // to redirect all server requests to /index.html. There are just two properties

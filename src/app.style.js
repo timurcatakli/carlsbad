@@ -2,6 +2,37 @@ import styled from 'styled-components';
 import { key } from 'styled-theme';
 
 const AppStyleWrapper = styled.div`
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  a,
+  p,
+  li,
+  input,
+  textarea,
+  span,
+  div,
+  img,
+  svg {
+    color: #fff;
+  }
+
+  .ant-row:not(.ant-form-item) {
+    ${'' /* margin-left: -8px;
+    margin-right: -8px; */};
+    &:before,
+    &:after {
+      display: none;
+    }
+  }
+
+  .ant-row > div {
+    padding: 0;
+  }
+
   .ant-layout-header {
     padding: 0;
   }

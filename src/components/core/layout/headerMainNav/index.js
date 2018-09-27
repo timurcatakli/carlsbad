@@ -73,13 +73,16 @@ class HeaderMainNav extends React.Component {
     });
   };
 
-  onComponentChange = value => {
-    this.setState({
-      selectedComponent: value,
-    });
+  handleRoutePush = () => {
     const selectedCategory = this.state.selectedCategory.toLowerCase()
     const selectedComponent = this.state.selectedComponent.toLowerCase()
     this.props.history.push(`/${selectedCategory}/${selectedComponent}`);
+  }
+
+  onComponentChange = value => {
+    this.setState({
+      selectedComponent: value,
+    }, this.handleRoutePush);
   };
 
   render() {
